@@ -7,6 +7,8 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @comment.article_id = @article_id
     @article = Article.find(params[:id])
   end
 
@@ -25,7 +27,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
-    redirect_to article_path("articles"), data: {confirm: "Really delete the article?"}
+    redirect_to article_path(), data: {confirm: "Really delete the article?"}
   end
 
   def edit
